@@ -39,7 +39,7 @@ public class Pedido {
 	}
 
 	public void setValorNegociado(BigDecimal valorNegociado) {
-		this.valorNegociado = valorNegociado;
+			this.valorNegociado = valorNegociado;
 	}
 
 	public LocalDate getDataDaEntrega() {

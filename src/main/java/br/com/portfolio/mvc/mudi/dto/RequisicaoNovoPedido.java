@@ -4,6 +4,7 @@ import br.com.portfolio.mvc.mudi.model.Pedido;
 import br.com.portfolio.mvc.mudi.model.StatusPedido;
 
 import javax.validation.constraints.NotBlank;
+import java.math.BigDecimal;
 
 public class RequisicaoNovoPedido {
 
@@ -15,8 +16,19 @@ public class RequisicaoNovoPedido {
 	
 	@NotBlank
 	private String urlImagem;
+
 	private String descricao;
-	
+
+	private BigDecimal valorNegociado;
+
+	public BigDecimal getValorNegociado() {
+		return valorNegociado;
+	}
+
+	public void setValorNegociado(BigDecimal valorNegociado) {
+		this.valorNegociado = valorNegociado;
+	}
+
 	public String getNomeProduto() {
 		return nomeProduto;
 	}
@@ -48,6 +60,7 @@ public class RequisicaoNovoPedido {
 		pedido.setUrlImagem(urlImagem);
 		pedido.setUrlProduto(urlProduto);
 		pedido.setStatus(StatusPedido.AGUARDANDO);
+		pedido.setValorNegociado(valorNegociado);
 		return pedido;
 	}
 	
