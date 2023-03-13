@@ -36,7 +36,7 @@ public class HomeController {
 		model.addAttribute("status", status);
 		return "home"; 
 	}
-	
+	a
 	@ExceptionHandler(IllegalArgumentException.class)
 	public String onError() {
 		return "redirect:/home";
