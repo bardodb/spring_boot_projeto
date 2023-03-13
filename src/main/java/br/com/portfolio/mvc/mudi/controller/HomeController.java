@@ -1,5 +1,6 @@
 package br.com.portfolio.mvc.mudi.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,18 +20,18 @@ import br.com.portfolio.mvc.mudi.repository.PedidoRepository;
 public class HomeController {
 	
 	@Autowired
-	private PedidoRepository repository;
+	private PedidoRepository pedidoRepository;
 	
 	@GetMapping()
-	public String home(Model model) {
-		List<Pedido> pedidos = repository.findAll();
+	public String home(Model model, Principal principal) {
+		List<Pedido> pedidos = pedidoRepository.findAllByUsuario(principal.getName());
 		model.addAttribute("pedidos", pedidos);
 		return "home"; 
 	}
 	
 	@GetMapping("/{status}")
 	public String porStatus(@PathVariable("status") String status, Model model) {
-		List<Pedido> pedidos = repository.findByStatus(StatusPedido.valueOf(status.toUpperCase()));
+		List<Pedido> pedidos = pedidoRepository.findByStatus(StatusPedido.valueOf(status.toUpperCase()));
 		model.addAttribute("pedidos", pedidos);
 		model.addAttribute("status", status);
 		return "home"; 
