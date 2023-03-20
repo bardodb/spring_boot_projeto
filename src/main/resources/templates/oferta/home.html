@@ -11,10 +11,10 @@
 
 		<div class="card-body">
 			<div class="row">
-				<div class="col-12 col-sm-8  mb-3">
+				<div class="col-12 col-sm-8 mb-3">
 					<div class="row">
-						<div class="col-md-5">Valor: <input/></div>
-						<div class="col-md-7">Data da entrega: <input/></div>
+						<div class="col-md-5">Valor: <input v-model:src="pedido"/></div>
+						<div class="col-md-7">Data da entrega: <input v-model:"ped"/></div>
 					</div>
 
 					<div>Produto</div>
@@ -23,7 +23,7 @@
 					<div>Descrição</div>
 					<div>
 						<textarea class="form-control">{{pedido.descricao}}</textarea>
-					</div>
+          </div>
 				</div>
 				<div class="col-12 col-sm-4">
 					<div>
@@ -36,7 +36,8 @@
 </div>
   <script>
 	function onLoad(){
-    var app = new Vue({
+    var app = new Vue(
+      {
       el: '#ofertas',
       data: {
         pedidos : []
