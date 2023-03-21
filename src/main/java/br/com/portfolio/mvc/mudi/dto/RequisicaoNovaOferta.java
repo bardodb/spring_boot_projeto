@@ -10,7 +10,7 @@ public class RequisicaoNovaOferta {
 
   private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/mm/yyyy");
 
-  private long pedidoId;
+  private Long pedidoId;
 
   private String valor;
 
@@ -18,11 +18,11 @@ public class RequisicaoNovaOferta {
 
   private String comentario;
 
-  public long getPedidoId() {
+  public Long getPedidoId() {
     return pedidoId;
   }
 
-  public void setPedidoId(long pedidoId) {
+  public void setPedidoId(Long pedidoId) {
     this.pedidoId = pedidoId;
   }
 
