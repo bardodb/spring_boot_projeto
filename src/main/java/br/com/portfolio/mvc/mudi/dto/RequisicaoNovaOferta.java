@@ -2,6 +2,8 @@ package br.com.portfolio.mvc.mudi.dto;
 
 import br.com.portfolio.mvc.mudi.model.Oferta;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -12,9 +14,14 @@ public class RequisicaoNovaOferta {
 
   private Long pedidoId;
 
+  @Pattern(regexp = "^\\d+(\\.\\d{2})?$", message = "O preço deve ser numérico com duas casas decimais")
+  @NotNull
   private String valor;
 
+  @Pattern(regexp = "^\\d{2}/\\d{2}/\\d{4}$", message = "A data deve estar no formato dd/mm/yyyy")
+  @NotNull
   private String dataDaEntrega;
+
 
   private String comentario;
 

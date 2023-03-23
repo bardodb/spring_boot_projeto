@@ -1,7 +1,6 @@
 package br.com.portfolio.mvc.mudi;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -24,6 +23,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http
+      .csrf().disable()
       .authorizeRequests()
       .antMatchers("/home/**")
       .permitAll()
@@ -38,7 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
       .logout(logout -> {
         logout.logoutUrl("/logout")
           .logoutSuccessUrl("/home");
-      });
+      }).csrf().disable();
   }
 
   @Override

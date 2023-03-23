@@ -1,4 +1,4 @@
-<html>
+<html lang="pt-BR">
 <head th:replace="~{base :: head}"></head>
 <body onload="onLoad()">
 <div th:replace="~{base :: logo}"></div>
@@ -27,12 +27,12 @@
             <label>Comentario</label>
             <textarea class="form-control" v-model=pedido.comentario></textarea>
           </div>
-          <button v-if="pedido.ofertaEnviada" class="btn btn-sucess mt-2">Oferta Enviada</button>
-          <button v-else v-on:click="enviarOferta(pedido)" class="btn btn-primary mt-2">Enviar Oferta</button>
+          <button v-if="pedido.ofertaEnviada" class="btn btn-success mt-2">Oferta Enviada</button>
+          <button v-else v-on:click="enviarOferta(pedido)" id="enviarOferta" class="btn btn-primary mt-2">Enviar Oferta</button>
 				</div>
 				<div class="col-12 col-sm-4">
 					<div>
-						<img class="img-thumbnail" v-bind:src="pedido.urlImagem"/>
+						<img class="img-thumbnail"  v-bind:src="pedido.urlImagem"/>
 					</div>
 				</div>
 			</div>
@@ -42,37 +42,39 @@
   <script>
 	function onLoad(){
     var app = new Vue(
-      {
-      el: '#ofertas',
-      data: {
-        pedidos : []
+        {
+          el: '#ofertas',
+          data: {
+            pedidos: []
 
-      },
-      mounted(){
-        axios
-          .get('http://localhost:8080/api/pedidos/aguardando')
-          .then(response => {
-            response.data.forEach(pedido => pedido.ofertaEnviada = false)
-            this.pedidos = response.data
-          })
-      },
-        methods:{
-        enviarOferta:function(pedido){
-          axios
-            .post('http://localhost:8080/api/ofertas',{
-             pedidoId: pedido.id,
-              valor: pedido.valorNegociado,
-              dataDaEntrega: pedido.dataDaEntrega ,
-              comentario: pedido.comentario
-            })
-            .then(response => pedido.ofertaEnviada = true);
-    }
-        }
-    });
-	}
+          },
+          mounted() {
+            axios
+              .get('http://localhost:8080/api/pedidos/aguardando')
+              .then(response => {
+                response.data.forEach(pedido => pedido.ofertaEnviada = false)
+                this.pedidos = response.data
+              })
+          },
+          methods: {
+            enviarOferta: function (pedido) {
+              axios
+                .post('http://localhost:8080/api/ofertas', {
+                  pedidoId: pedido.id,
+                  valor: pedido.valorNegociado,
+                  dataDaEntrega: pedido.dataDaEntrega,
+                  comentario: pedido.comentario
+                })
+                .then(response => pedido.ofertaEnviada = true)
+                .catch(error => {
+                  console.log(error.response.data.errors)
+                })
+            }
+          }
+        });
+  }
   </script>
-      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </body>
 </html>
