@@ -52,7 +52,13 @@
             axios
               .get('http://localhost:8080/api/pedidos/aguardando')
               .then(response => {
-                response.data.forEach(pedido => pedido.ofertaEnviada = false)
+                response.data.forEach(pedido => {
+					pedido.ofertaEnviada = false;
+					pedido.errors={
+						valor: '',
+						dataDaEntrega: ''
+					}
+				})
                 this.pedidos = response.data
               })
           },
@@ -67,7 +73,9 @@
                 })
                 .then(response => pedido.ofertaEnviada = true)
                 .catch(error => {
-                  console.log(error.response.data.errors)
+                  error.response.data.errors.forEach(error =>{
+					  this.pedidos.error.fi
+				  })
                 })
             }
           }

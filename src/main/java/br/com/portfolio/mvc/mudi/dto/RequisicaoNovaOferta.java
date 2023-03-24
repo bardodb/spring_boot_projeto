@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 
 public class RequisicaoNovaOferta {
 
-  private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/mm/yyyy");
+  private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
   private Long pedidoId;
 
