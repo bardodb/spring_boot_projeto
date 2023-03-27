@@ -20,7 +20,7 @@ public class OfertasRest {
 @Autowired
   private PedidoRepository pedidoRepository;
   @PostMapping
-  public Oferta valorNegociado(@Valid @RequestBody RequisicaoNovaOferta requisicao){
+  public Oferta criaOferta(@Valid @RequestBody RequisicaoNovaOferta requisicao){
     Optional<Pedido> pedidoBuscado = pedidoRepository.findById(requisicao.getPedidoId());
     if(!pedidoBuscado.isPresent()){
       return null;

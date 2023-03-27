@@ -14,14 +14,13 @@ public class RequisicaoNovaOferta {
 
   private Long pedidoId;
 
-  @Pattern(regexp = "^\\d+(\\.\\d{2})?$", message = "O preço deve ser numérico com duas casas decimais")
+  @Pattern(regexp = "^\\d+(\\.\\d+{2})?$")
   @NotNull
   private String valor;
 
-  @Pattern(regexp = "^\\d{2}/\\d{2}/\\d{4}$", message = "A data deve estar no formato dd/mm/yyyy")
+  @Pattern(regexp = "^\\d{2}/\\d{2}/\\d{4}$")
   @NotNull
   private String dataDaEntrega;
-
 
   private String comentario;
 

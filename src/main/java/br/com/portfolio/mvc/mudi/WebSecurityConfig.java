@@ -23,7 +23,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http
-      .csrf().disable()
       .authorizeRequests()
       .antMatchers("/home/**")
       .permitAll()
@@ -51,8 +50,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 //		UserDetails user =
 //				 User.builder()
-//					.username("maria")
-//					.password(encoder.encode("maria"))
+//					.username("lola")
+//					.password(encoder.encode("lola"))
 //					.roles("ADM")
 //					.build();
   }

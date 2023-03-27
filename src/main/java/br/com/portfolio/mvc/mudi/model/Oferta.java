@@ -64,5 +64,7 @@ public class Oferta {
   public void setComentario(String comentario) {
     this.comentario = comentario;
   }
+
+
 }
 
